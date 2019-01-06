@@ -67,8 +67,26 @@ class Generator(nn.Module):
 
         gumbelcluster = []
         for i in range(GLV.fur_type_num):
+
             #gumbelcluster.append(F.softmax(self.fc4_map2cluster[i](x)))
-            gumbelcluster.append(F.gumbel_softmax(self.fc4_map2cluster[i](x), tau=GLV.gumbel_temp, hard=not training))
+            if GLV.gumbel_softmax:
+                gumbelcluster.append(F.gumbel_softmax(self.fc4_map2cluster[i](x), tau=GLV.gumbel_temp, hard=not training))
+            else:
+                if training:
+                    gumbelcluster.append(F.softmax(self.fc4_map2cluster[i](x), dim=1))
+                else:
+                    if GLV.softmax_argmax:
+                        gumbelcluster.append(OneHotCategorical(logits=self.fc4_map2cluster[i](x)).sample())
+                    elif GLV.softmax_sample: # sample
+                        # covert to one-hot
+                        logits = (self.fc4_map2cluster[i](x).argmax(dim=1, keepdim=True))
+                        one_hot_logits = (torch.zeros(self.fc4_map2cluster[i](x).shape))
+                        if GLV.gpu_mode:
+                             one_hot_logits = one_hot_logits.cuda()
+                        one_hot_logits.scatter_(1, (logits), 1)
+                        gumbelcluster.append(OneHotCategorical(logits=one_hot_logits).sample())
+                    else:
+                        gumbelcluster.append(F.softmax(self.fc4_map2cluster[i](x), dim=1))
             #if GLV.WGAN_Loss:
             #    if training:
             #        gumbelcluster.append(F.softmax(self.fc4_map2cluster[i](x)))
@@ -80,7 +98,31 @@ class Generator(nn.Module):
         gumbelsmall = []
         for i in range(GLV.fl_smallobj):
             #gumbelsmall.append(F.softmax(self.fc4_map2small[i](x)))
-            gumbelsmall.append(F.gumbel_softmax(self.fc4_map2small[i](x), tau=GLV.gumbel_temp, hard=not training))
+            if GLV.gumbel_softmax:
+                gumbelsmall.append(F.gumbel_softmax(self.fc4_map2small[i](x), tau=GLV.gumbel_temp, hard=not training))
+            else:
+                #gumbelsmall.append(F.softmax(self.fc4_map2small[i](x)))
+                if training:
+                    gumbelsmall.append(F.softmax(self.fc4_map2small[i](x), dim=1))
+                else:
+                    if GLV.softmax_argmax:
+                        gumbelsmall.append(OneHotCategorical(logits=self.fc4_map2small[i](x)).sample())
+                    elif GLV.softmax_sample: # sample
+                        # covert to one-hot
+                        if GLV.gpu_mode:
+                            logits = self.fc4_map2small[i](x).argmax(dim=1, keepdim=True)
+                            one_hot_logits = torch.zeros(self.fc4_map2small[i](x).shape)
+                            one_hot_logits = one_hot_logits.cuda()
+                            one_hot_logits.scatter_(1, logits, 1)
+                        else:
+                            logits = self.fc4_map2small[i](x).argmax(dim=1, keepdim=True)
+                            one_hot_logits = torch.zeros(self.fc4_map2small[i](x).shape)
+                            one_hot_logits.scatter_(1, logits, 1)
+
+                        gumbelsmall.append(OneHotCategorical(logits=one_hot_logits).sample())
+                    else:
+                        gumbelsmall.append(F.softmax(self.fc4_map2small[i](x), dim=1))
+
             #if GLV.WGAN_Loss:
             #    if training:
             #        gumbelsmall.append(F.softmax(self.fc4_map2small[i](x)))
@@ -99,7 +141,6 @@ class Generator(nn.Module):
 
         #if GLV.gpu_mode:
         #    x = x.cuda()
-
 
         return x
 
@@ -211,9 +252,13 @@ class CGANScene(object):
         self.train_hist['D_prob_fake'] = [] # 记录D判断G所生成的样本的概率
         self.train_hist['D_prob_real'] = []  # 记录D判断G所生成的样本的概率
         self.train_hist['dist_gt'] = [] # 和目标分布的距离
+        self.train_hist['mse_prob_dim'] = [] # 每个维度为1的概率
+        self.train_hist['predict_category'] = [] #分别用训练数据和生成数据训练一个多分类器，去分类测试数据
         # metric
         self.score_tr = []
         #self.D.train()
+        train_set = GLV.train_set
+        train_type = GLV.train_type
 
         print('training start!!')
         start_time = time.time()
@@ -235,7 +280,7 @@ class CGANScene(object):
                     print("learning rate change!")
 
             epoch_start_time = time.time()
-            for iter, (x_, y_) in enumerate(GLV.data_loader): # x_是feature, y_是label
+            for iter, (x_, y_, f_i) in enumerate(GLV.data_loader[train_set][train_type]): # x_是feature, y_是label
                 #step += 1
                 batch_size = x_.shape[0] # 有可能尾部的size不一样
                 x_ = x_.view(-1, GLV.input_dim) # 针对MNIST数据集
@@ -353,24 +398,28 @@ class CGANScene(object):
                 #    self.score_tr.append(s)
                 #    self.G.train()
             with torch.no_grad():
-                per_epoch_ptime = time.time() - epoch_start_time
                 self.G.eval()
-                dist_gt = metric.compute_distance_gt(self.G, epoch, GLV.gpu_mode)
-                mse_prob_dim = metric.calculate_mse_prob_dim(self.G)
+                dist_gt = metric.compute_distance_gt(self.G, test=GLV.test_set)
                 self.train_hist['dist_gt'].append(dist_gt)
-                print(
-                    'Epoch: {}/{}, D Loss: {}, G Loss: {}, GTdist: {}, Epoch time: {}'.format(epoch, GLV.epochs, D_loss.item(),
-                                                                                G_loss.item(), dist_gt, per_epoch_ptime))
-                print(
-                    'MSE_Prob_Dim: {}'.format(mse_prob_dim))
-
-
-
-                s = metric.compute_score_raw(self.G, epoch)
+                mse_prob_dim = metric.calculate_mse_prob_dim(self.G, test=GLV.test_set, type=GLV.test_type)
+                self.train_hist['mse_prob_dim'].append(mse_prob_dim)
+                predict_cat_acc = metric.calculate_predict_cat(self.G, test=GLV.test_set, type=GLV.test_type)
+                self.train_hist['predict_category'].append(predict_cat_acc)
+                s = metric.compute_score_raw(self.G, epoch, test=GLV.test_set, type=GLV.test_type)
                 self.score_tr.append(s)
-
                 self.train_hist['G_loss'].append(G_loss.item())
                 self.train_hist['D_loss'].append(D_loss.item())
+                per_epoch_ptime = time.time() - epoch_start_time
+                print(
+                    'Epoch: {}/{}, D Loss: {}, G Loss: {}, Epoch time: {}'.format(epoch, GLV.epochs,
+                                                                                              D_loss.item(),
+                                                                                              G_loss.item(),
+                                                                                              per_epoch_ptime))
+                print(
+                    'MSE_Prob_Dim: {}'.format(mse_prob_dim))
+                print(
+                    'Predict each category: {}'.format(predict_cat_acc))
+
                 if GLV.gpu_mode:
                     self.train_hist['D_prob_fake'].append(torch.sigmoid(D_fake).cpu().data.numpy().mean())
                     self.train_hist['D_prob_real'].append(torch.sigmoid(D_real).cpu().data.numpy().mean())
@@ -406,6 +455,7 @@ class CGANScene(object):
         utils.D_Prob_G_plot(self.train_hist)
         utils.metric_plot(np.array(self.score_tr))
         utils.dist_gt_plot(self.train_hist)
+        utils.plot_probdim_predict_cat(self.train_hist)
         utils.visualize_results(G=self.G, sample_num=self.sample_num,
                                 epoch=(epoch + 1), n_row=self.n_row, sample_z_=self.sample_z_,
                                 sample_y_=self.sample_y_, fix=True, final=True)

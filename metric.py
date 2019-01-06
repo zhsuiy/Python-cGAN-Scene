@@ -14,6 +14,9 @@ import torchvision.models as models
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets
 from sklearn.metrics.regression import mean_squared_error
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics.classification import accuracy_score, f1_score
 import pdb
 # from tqdm import tqdm
 from scipy.stats import entropy
@@ -51,23 +54,28 @@ def init_mnistdataloader(train=True, class_num=10, imgSize=28, batch_size=32):
             GLV.mnist_data[y].extend(x_[y_index])
 
 
-def init_scenedataloader(feature_path, label_path, class_num=4, input_dim=-1, batch_size=32):
+def init_scenedataloader(class_num=4, input_dim=-1):
     GLV.scene_data = {}
-    for i in range(class_num):
-        GLV.scene_data[i] = []
-    #data_loader = DataLoader(utils.SceneFurColorSmallObjDataset(feature_path, label_path),
-    #                     batch_size=batch_size,
-    #                     shuffle=True)
+    GLV.scene_data_fur_indices = {}
     data_loader = GLV.data_loader
+    for t in GLV.train_test:
+        GLV.scene_data[t] = {}
+        GLV.scene_data_fur_indices[t] = {}
+        for og in GLV.org_gen:
+            GLV.scene_data[t][og] = {}
+            GLV.scene_data_fur_indices[t][og] = {}
+            for i in range(class_num):
+                GLV.scene_data[t][og][i] = []
+                GLV.scene_data_fur_indices[t][og][i] = []
 
-    for iter, (x_, y_) in enumerate(data_loader):  # x_是feature, y_是label
-        # step += 1
-        # batch_size = x_.shape[0]  # 有可能尾部的size不一样
-        x_ = x_.view(-1, input_dim)  # scene
-        for y in range(class_num):
-            y_index = np.where(y_ == y)
-            GLV.scene_data[y].extend(x_[y_index])
-
+            for iter, (x_, y_, f_i) in enumerate(data_loader[t][og]):  # x_是feature, y_是label
+                # step += 1
+                # batch_size = x_.shape[0]  # 有可能尾部的size不一样
+                x_ = x_.view(-1, input_dim)  # scene
+                for y in range(class_num):
+                    y_index = np.where(y_ == y)
+                    GLV.scene_data[t][og][y].extend(x_[y_index])
+                    GLV.scene_data_fur_indices[t][og][y].extend(f_i[y_index])
 
 
 class MNISTConditional(Dataset):
@@ -82,15 +90,16 @@ class MNISTConditional(Dataset):
         return self.features[idx], self.labels[idx]
 
 class SceneConditional(Dataset):
-    def __init__(self, label=0):
-        self.features = GLV.scene_data[label]
+    def __init__(self, label=0, split='train', type='gen'):
+        self.features = GLV.scene_data[split][type][label]
         self.labels = np.full((len(self.features)), label)
+        self.furniture_indices = GLV.scene_data_fur_indices[split][type][label]
 
     def __len__(self):
         return len(self.labels)
 
     def __getitem__(self, idx):
-        return self.features[idx], self.labels[idx]
+        return self.features[idx], self.labels[idx], self.furniture_indices[idx]
 
 
 def giveName(iter):  # 7 digit name.
@@ -118,65 +127,64 @@ def sampleFake(label, dataset, netG, nz, sampleSize, batchSize, saveFolder, clas
     else:
         fake = netG(sample_z, y_vec, training=False)
 
-    if gpu_mode:
-        data = fake.cpu().data
-    else:
-        data = fake.data
+    #if gpu_mode:
+    #    data = fake.cpu().data
+    #else:
+    #    data = fake.data
 
-    if save_images:
-        dim = int(fake.size()[1]**0.5)
-        for iter in range(0, len(data)):
-            vutils.save_image(fake.data[iter].view(1, dim, dim).mul(0.5).add(
-                0.5), saveFolder + str(label) + '/' + giveName(iter) + ".png")
-
-    #data = data.numpy()
-    if dataset=='scene':
-
-        if GLV.output_metric_hard:
-            converted_data = np.zeros((len(data), len(data[0])))
-            data = data.numpy()
-            fc, sm = data[:,:fl_furcolor], data[: ,fl_furcolor:feature_size]
-            fc = fc.reshape(len(data), -1, GLV.cluster_num)
-            cluster_index = fc.argmax(axis=2)   # 取出值最大的cluster index
-            cluster_index = torch.LongTensor(cluster_index.reshape(len(fc), len(fc[0]), 1))
-            fi = torch.zeros(fc.shape)          # 其余位置均为0
-            fi.scatter_(2, cluster_index, 1)    # 在cluster位置为1
-            #sm = np.float32(sm > 0.5)  ## used to be > 0 when using tanh
-
-            if label == 0 or label == 1:
-                fi[:, GLV.living_only_idx, :] = 0
-            else:
-                fi[:, GLV.bedroom_only_idx, :] = 0
-
-            if gpu_mode:
-                fi = fi.view(len(data),-1).cpu().data.numpy()
-            else:
-                fi = fi.view(len(data), -1).data.numpy()
-
-            converted_data[:,:fl_furcolor] = fi
-            converted_data[:, fl_furcolor: feature_size] = sm
-            data = torch.FloatTensor(converted_data)
-        else:
-            converted_data = np.zeros((len(data), len(data[0])))
-            data = data.numpy()
-            fc, sm = data[:, :fl_furcolor], data[:, fl_furcolor:feature_size]
-            fc = fc.reshape(len(data), -1, GLV.cluster_num)
-            if label == 0 or label == 1:
-                fc[:, GLV.living_only_idx, :] = 0
-            else:
-                fc[:, GLV.bedroom_only_idx, :] = 0
-            fc = fc.reshape(len(data), -1)
-            #sm = np.float32(sm > 0.5)
-            converted_data[:, :fl_furcolor] = fc
-            converted_data[:, fl_furcolor: feature_size] = sm
-            data = torch.FloatTensor(converted_data)
+    #if save_images:
+    #    dim = int(fake.size()[1]**0.5)
+    #    for iter in range(0, len(data)):
+    #        vutils.save_image(fake.data[iter].view(1, dim, dim).mul(0.5).add(
+    #            0.5), saveFolder + str(label) + '/' + giveName(iter) + ".png")
 
 
-    #return np.concatenate(data.numpy())
-    return data
+    # if dataset=='scene':
+    #
+    #     if GLV.output_metric_hard:
+    #         converted_data = np.zeros((len(data), len(data[0])))
+    #         data = data.numpy()
+    #         fc, sm = data[:,:fl_furcolor], data[: ,fl_furcolor:feature_size]
+    #         fc = fc.reshape(len(data), -1, GLV.cluster_num)
+    #         cluster_index = fc.argmax(axis=2)   # 取出值最大的cluster index
+    #         cluster_index = torch.LongTensor(cluster_index.reshape(len(fc), len(fc[0]), 1))
+    #         fi = torch.zeros(fc.shape)          # 其余位置均为0
+    #         fi.scatter_(2, cluster_index, 1)    # 在cluster位置为1
+    #         #sm = np.float32(sm > 0.5)  ## used to be > 0 when using tanh
+    #
+    #         if label == 0 or label == 1:
+    #             fi[:, GLV.living_only_idx, :] = 0
+    #         else:
+    #             fi[:, GLV.bedroom_only_idx, :] = 0
+    #
+    #         if gpu_mode:
+    #             fi = fi.view(len(data),-1).cpu().data.numpy()
+    #         else:
+    #             fi = fi.view(len(data), -1).data.numpy()
+    #
+    #         converted_data[:,:fl_furcolor] = fi
+    #         converted_data[:, fl_furcolor: feature_size] = sm
+    #         data = torch.FloatTensor(converted_data)
+    #     else:
+    #         converted_data = np.zeros((len(data), len(data[0])))
+    #         data = data.numpy()
+    #         fc, sm = data[:, :fl_furcolor], data[:, fl_furcolor:feature_size]
+    #         fc = fc.reshape(len(data), -1, GLV.cluster_num)
+    #         if label == 0 or label == 1:
+    #             fc[:, GLV.living_only_idx, :] = 0
+    #         else:
+    #             fc[:, GLV.bedroom_only_idx, :] = 0
+    #         fc = fc.reshape(len(data), -1)
+    #         #sm = np.float32(sm > 0.5)
+    #         converted_data[:, :fl_furcolor] = fc
+    #         converted_data[:, fl_furcolor: feature_size] = sm
+    #         data = torch.FloatTensor(converted_data)
+
+    #return data
+    return fake
 
 
-def sampleTrue(label, dataset, imageSize, dataroot, sampleSize, batchSize, saveFolder, save_images=False):
+def sampleTrue(label, dataset, imageSize, dataroot, sampleSize, batchSize, saveFolder, split='train', type='gen', save_images=False):
     #print('sampling real images ...')
     # saveFolder = saveFolder + '0/'
 
@@ -186,20 +194,21 @@ def sampleTrue(label, dataset, imageSize, dataroot, sampleSize, batchSize, saveF
                                 batch_size=batchSize,
                                 shuffle=True)
     elif dataset == 'scene':
-        dataloader = DataLoader(SceneConditional(label),
+        dataloader = DataLoader(SceneConditional(label, split, type),
                                 batch_size=batchSize,
                                 shuffle=True)
     else:
         raise Exception("[!] There is no dataset of " + dataset)
 
     feature_r = []
+    furniture_indices = []
     if not os.path.exists(saveFolder):
         os.makedirs(saveFolder)
     if not os.path.exists(saveFolder + str(label) + '/'):
         os.makedirs(saveFolder + str(label) + '/')
 
     iter = 0
-    for i, (features, labels) in enumerate(dataloader):
+    for i, (features, labels, f_i) in enumerate(dataloader):
         for j in range(0, len(features)):
             if save_images:
                 vutils.save_image(features[j].view(1, imageSize, imageSize).mul(0.5).add(
@@ -207,6 +216,7 @@ def sampleTrue(label, dataset, imageSize, dataroot, sampleSize, batchSize, saveF
             iter += 1
            #feature_r.append(features[j].view(-1, imageSize**2))
             feature_r.append(features[j])
+            furniture_indices.append(f_i[j])
             if iter >= sampleSize:
                 break
         if iter >= sampleSize:
@@ -215,7 +225,8 @@ def sampleTrue(label, dataset, imageSize, dataroot, sampleSize, batchSize, saveF
 
     #feature_r = torch.cat(feature_r, 0)
     feature_r = torch.stack(feature_r).type(torch.FloatTensor)
-    return feature_r
+    furniture_indices = torch.stack(furniture_indices).type(torch.FloatTensor)
+    return feature_r, furniture_indices
 
 def distanceL1(X, Y):
     nX = X.size(0)
@@ -225,6 +236,38 @@ def distanceL1(X, Y):
     M = torch.zeros(nX, nY)
     M = (X[:, None, :] - Y[None, ...]).abs().sum(dim=2)
     return M
+
+def distanceL1_I(X, Y, fur_indices=None, isReal=False):
+    nX = X.size(0)
+    nY = Y.size(0)
+    X = X.view(nX, -1)
+    Y = Y.view(nY, -1)
+    if fur_indices is None:
+        return (X[:, None, :] - Y[None, ...]).abs().sum(dim=2) #/(len(GLV.furniture_types))
+    fur_indices = fur_indices.view(nX, -1)
+    #X_= torch.ones(X.shape)
+    M = torch.zeros(nX, nY)
+
+    filter = torch.ones(X.shape)
+
+    fur_indices = fur_indices.reshape(nX, fur_indices.size(1), -1)
+    fur_indices = fur_indices.expand(nX, -1, GLV.cluster_num)
+    fur_indices = fur_indices.reshape(nX, -1)
+    filter[:,:fl_furcolor] = fur_indices
+
+
+    #fc_x = X[:, :fl_furcolor]
+    fc_x_filtered = X * filter
+    #fc_y =  Y[:, :fl_furcolor]
+    if isReal:
+        M = (fc_x_filtered[:, None, :] - fc_x_filtered[:, None, :]*Y[None, ...]).abs().sum(dim=2) \
+        #/(fur_indices.sum(dim=1, keepdim=True)/GLV.cluster_num)
+    else:
+        M = (fc_x_filtered[:, None, :] - filter[:, None, :]*Y[None, ...]).abs().sum(dim=2)\
+            #/(fur_indices.sum(dim=1, keepdim=True)//GLV.cluster_num)
+
+    return M
+
 
 
 def distance(X, Y, sqrt, filter=False):
@@ -328,6 +371,7 @@ def mmd(Mxx, Mxy, Myy, sigma):
     Myy = torch.exp(-Myy / (scale * 2 * sigma * sigma))
     #mean = Mxx.mean() + Myy.mean() - 2 * Mxy.mean()
     #mmd = math.sqrt((mean + math.fabs(mean))/2)
+    ## used to be below.. hope it'll be fine
     mmd = math.sqrt(Mxx.mean() + Myy.mean() - 2 * Mxy.mean())
     return mmd
 
@@ -417,7 +461,7 @@ def compute_score(real, fake, k=1, sigma=1, sqrt=True):
     return s
 
 
-def compute_score_raw(netG, epoch, gpu_mode=False):
+def compute_score_raw(netG, epoch, test='train', type='gen'):
 
     saveFolder_r = GLV.metric_out_dir + '/' + GLV.dataset + '/real/'
     saveFolder_f = GLV.metric_out_dir + '/' + GLV.dataset + '/fake/'
@@ -426,24 +470,41 @@ def compute_score_raw(netG, epoch, gpu_mode=False):
     #    score[i] = []
 
     for label in range(GLV.class_num):
-        feature_r = sampleTrue(label, GLV.dataset, GLV.img_size, GLV.dataset_path,
+        feature_r, fur_indices_r = sampleTrue(label, GLV.dataset, GLV.img_size, GLV.dataset_path,
                                GLV.metric_sample_size, GLV.batch_size,
-                               saveFolder_r + 'epoch' + str(epoch).zfill(4) + '/', False)
+                               saveFolder_r + 'epoch' + str(epoch).zfill(4) + '/',
+                               test, type, False)
         feature_f = sampleFake(label, GLV.dataset, netG,  GLV.z_dim, GLV.metric_sample_size, GLV.batch_size,
                                saveFolder_f + 'epoch' + str(epoch).zfill(4) + '/',
                                GLV.class_num, GLV.gpu_mode, False)
+
+
 
         # 只取家具颜色
         #feature_r = feature_r[:, :fl_furcolor]
         #feature_f = feature_f[:, :fl_furcolor]
 
+        if GLV.filter_types:
+            #labels = torch.ones(len(feature_r), 1)*label
+            #labels = FloatTensor(labels.view(-1, 1))
+            #feature_r = utils.filter_non_exist(feature_r, fur_indices)
+            #feature_f = utils.filter_non_exist(feature_f, fur_indices)
+            feature_r = utils.filter_types(feature_r, torch.ones(len(feature_r), 1)*label)
+            feature_f = utils.filter_types(feature_f, torch.ones(len(feature_f), 1)*label)
+
+
         #Mxx = distance(feature_r, feature_r, False)
-        #Mxy = distance(feature_r, feature_f, False, filter=GLV.filter_distance)
+        #Mxy = distance(feature_r, feature_f, False, filter=True)
         #Myy = distance(feature_f, feature_f, False)
+
+        #Mxx = distanceL1_I(feature_r, feature_r, fur_indices_r, isReal=True)
+        #Mxy = distanceL1_I(feature_r, feature_f, fur_indices_r)
+        #Myy = distanceL1_I(feature_f, feature_f)
 
         Mxx = distanceL1(feature_r, feature_r)
         Mxy = distanceL1(feature_r, feature_f)
         Myy = distanceL1(feature_f, feature_f)
+
 
         score[label, 0] = wasserstein(Mxy/Mxy.max(), True)
         score[label, 1] = mmd(Mxx, Mxy, Myy, 1)
@@ -460,7 +521,7 @@ def compute_score_raw(netG, epoch, gpu_mode=False):
         #score[label] = compute_score(feature_r, feature_f, 1, 1, True)
     return score
 
-def compute_distance_gt(netG, epoch, gpu_mode=False):
+def compute_distance_gt(netG, test='train'):
     score = 0.0
     fur_dist = {}
     dec_dist = {}
@@ -500,7 +561,7 @@ def compute_distance_gt(netG, epoch, gpu_mode=False):
         smi = torch.zeros(sm.shape)  # 其余位置均为0
         smi.scatter_(2, sm_index, 1)  # 在cluster位置为1
 
-        if gpu_mode:
+        if GLV.gpu_mode:
             fi = fi.cpu().data.numpy()
             smi = smi.cpu().data.numpy()
         else:
@@ -517,7 +578,7 @@ def compute_distance_gt(netG, epoch, gpu_mode=False):
             dec_dist[GLV.smallobj_types[i]][label] = smi[i][0]
 
     for f in GLV.furniture_types:
-        score += ((GLV.fur_dist_gt[f] - fur_dist[f])**2).sum()
+        score += ((GLV.fur_dist_gt[test][f] - fur_dist[f])**2).sum()
     #for d in GLV.smallobj_types:
     #    score += ((GLV.dec_dist_gt[d] - dec_dist[d])**2).sum()
 
@@ -546,15 +607,15 @@ def mse_probabilities_by_dimension(data_x, data_y):
     mse = mean_squared_error(p_x_by_dimension, p_y_by_dimension)
     return p_x_by_dimension, p_y_by_dimension, mse
 
-def calculate_mse_prob_dim(G):
+def calculate_mse_prob_dim(G, test='train', type='gen'):
     score = 0.0
 
     for label in range(GLV.class_num):
-        dataloader = DataLoader(SceneConditional(label),
+        dataloader = DataLoader(SceneConditional(label, test, type),
                                 batch_size=GLV.batch_size,
                                 shuffle=True)
         mse = 0.0
-        for i, (features, labels) in enumerate(dataloader):
+        for i, (features, labels, f_i) in enumerate(dataloader):
             batch_size = len(features)
             real = features
             noise = torch.rand((batch_size, GLV.z_dim))
@@ -567,14 +628,129 @@ def calculate_mse_prob_dim(G):
             fake = G(noise, y_vec_, training=False)
 
             # 新加的
-            fake = utils.filter_types(fake, labels)
-
-
+            if GLV.filter_types:
+                real = utils.filter_types(real, labels)
+                fake = utils.filter_types(fake, labels)
 
             _, _, err = mse_probabilities_by_dimension(real, fake)
+
             mse += err
         score += mse
     score /= GLV.class_num
 
     return score
+
+
+def calculate_predict_cat(G, test='train', type='gen'):
+    variable_sizes = GLV.variable_sizes
+    score = 0.0
+    for label in range(GLV.class_num):
+        train_data = GLV.scene_data['train']['gen'][label]
+        test_data = GLV.scene_data[test][type][label]
+        train_data = torch.stack(train_data)
+        test_data = torch.stack(test_data)
+        batch_size = 1000
+        noise = torch.rand((batch_size, GLV.z_dim))
+        sample_y_ = (torch.ones(batch_size, 1) * label).type(torch.LongTensor)  # 随机y
+        y_vec_ = torch.zeros(batch_size, GLV.class_num)
+        y_vec_.scatter_(1, sample_y_.view(batch_size, 1), 1)
+        if GLV.gpu_mode:
+            noise, y_vec_ = noise.cuda(), y_vec_.cuda()
+
+        fake = G(noise, y_vec_, training=False)
+
+        if GLV.filter_types:
+            train_data = utils.filter_types(train_data, torch.ones(len(train_data)) * label)
+            test_data = utils.filter_types(test_data, torch.ones(len(test_data)) * label)
+            fake = utils.filter_types(fake, torch.ones(len(fake)) * label)
+
+        if GLV.gpu_mode:
+            train_data, test_data, fake = train_data.cpu().data.numpy(), test_data.data.cpu().numpy(), \
+                                          fake.data.cpu().numpy()
+        else:
+            train_data, test_data, fake = train_data.data.numpy(), test_data.data.numpy(), fake.data.numpy()
+
+
+
+
+        _, _, mse = plot_predictions_by_categorical(
+            train_data,
+            fake,
+            test_data,
+            variable_sizes
+        )
+        score += mse
+
+    score /= GLV.class_num
+
+    return score
+
+
+
+def predictions_by_categorical(train, test, variable_sizes):
+    prediction_scores = []
+    for selected_index, variable_size in enumerate(variable_sizes):
+        train_X, train_y = separate_categorical(train, variable_sizes, selected_index)
+        test_X, test_y = separate_categorical(test, variable_sizes, selected_index)
+        prediction_scores.append(prediction_score(
+            train_X, train_y, test_X, test_y,
+            metric="accuracy", model="random_forest_classifier"
+        ))
+    return np.array(prediction_scores)
+
+def separate_categorical(data, variable_sizes, selected_index):
+    if selected_index == 0:
+        features = data[:, variable_sizes[selected_index]:]
+        labels = data[:, :variable_sizes[selected_index]]
+    elif 0 < selected_index < len(variable_sizes) - 1:
+        left_size = sum(variable_sizes[:selected_index])
+        left = data[:, :left_size]
+        labels = data[:, left_size:left_size + variable_sizes[selected_index]]
+        right = data[:, left_size + variable_sizes[selected_index]:]
+        features = np.concatenate((left, right), axis=1)
+    else:
+        left_size = sum(variable_sizes[:-1])
+        features = data[:, :left_size]
+        labels = data[:, left_size:]
+
+    assert data.shape[1] == features.shape[1] + labels.shape[1]
+    labels = np.argmax(labels, axis=1)
+
+    return features, labels
+
+def prediction_score(train_X, train_y, test_X, test_y, metric, model):
+    # if the train labels are always the same
+    values_train = set(train_y)
+    if len(values_train) == 1:
+        # predict always that value
+        only_value_train = list(values_train)[0]
+        test_pred = np.ones_like(test_y) * only_value_train
+
+    # if the train labels have different values
+    else:
+        # create the model
+        if model == "random_forest_classifier":
+            m = RandomForestClassifier(n_estimators=10)
+        elif model == "logistic_regression":
+            m = LogisticRegression()
+        else:
+            raise Exception("Invalid model name.")
+
+        # fit and predict
+        m.fit(train_X, train_y)
+        test_pred = m.predict(test_X)
+
+    # calculate the score
+    if metric == "f1":
+        return f1_score(test_y, test_pred)
+    elif metric == "accuracy":
+        return accuracy_score(test_y, test_pred)
+    else:
+        raise Exception("Invalid metric name.")
+
+def plot_predictions_by_categorical(data_x, data_y, data_test, variable_sizes):
+    score_y_by_categorical = predictions_by_categorical(data_y, data_test, variable_sizes)
+    score_x_by_categorical = predictions_by_categorical(data_x, data_test, variable_sizes)
+    mse = mean_squared_error(score_x_by_categorical, score_y_by_categorical)
+    return score_x_by_categorical, score_y_by_categorical, mse
 

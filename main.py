@@ -51,6 +51,19 @@ def parse_args():
     parser.add_argument('--WGAN_Loss', type=bool, default=False, help='Whether to use wgan loss')
     parser.add_argument('--WGAN_GP', type=bool, default=False, help='Whether to use wgan_gp')
     parser.add_argument('--WGAN_GP_lambda', type=float, default=10, help='Lambda fro gradient penalty')
+    parser.add_argument('--train_set', type=str, default='train', choices=['train', 'test', 'total'],
+                        help='Dataset for training')
+    parser.add_argument('--train_type', type=str, default='gen', choices=['gen', 'org'],
+                        help='Whether to use synthesized data for training')
+    parser.add_argument('--test_set', type=str, default='test', choices=['train', 'test', 'total'],
+                        help='Dataset for testing')
+    parser.add_argument('--test_type', type=str, default='gen', choices=['gen', 'org'],
+                        help='Whether to use synthesized data for testing')
+    parser.add_argument('--filter_types', type=bool, default=False, help='Whether to filter furniture types')
+    parser.add_argument('--gumbel_softmax', type=bool, default=False, help='Whether to apply gumbel_softmax')
+    parser.add_argument('--softmax_argmax', type=bool, default=False, help='Whether to apply argmax when evaluating')
+    parser.add_argument('--softmax_sample', type=bool, default=False, help='Whether to apply sample when evaluating')
+
     #parser.add_argument('--benchmark_mode', type=bool, default=True)
 
     return check_args(parser.parse_args())

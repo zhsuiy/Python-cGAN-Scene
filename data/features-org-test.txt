@@ -1,249 +1,369 @@
 0
-Furniture_color Bed:9 BedPillow:7 BedSheet:7 Cabinet:10 Desk:8 Floor:1 NightTable:8 Wall:14 Window:8 
-Decorations GiftBox Lamp PhotoFrame 
+Furniture_color Bed:0 BedPillow:12 BedSheet:7 Cabinet:10 Carpet:8 Closet:9 Curtain:14 Floor:3 NightTable:5 SideTable:0 Wall:1 WallPhoto:12 Window:7 
+Decorations Doll Flower Lamp Plant Handbag 
 1
-Furniture_color Bed:9 BedPillow:12 BedSheet:0 Carpet:10 Curtain:7 Desk:8 Floor:2 Wall:10 WallPhoto:9 Window:1 
-Decorations Clock Flower Lamp Map 
+Furniture_color Bed:9 BedPillow:1 BedSheet:0 Cabinet:10 Carpet:14 Chair:0 Curtain:5 Desk:8 Floor:13 NightTable:3 SideTable:0 Wall:12 Window:2 
+Decorations Book Clock Cup Doll Doll Figurine GiftBox Lamp PhotoFrame PhotoFrame PhotoFrame Handbag 
 2
-Furniture_color Closet:8 
-Decorations 
+Furniture_color Bed:5 BedPillow:2 BedSheet:0 Chair:11 Curtain:10 Floor:9 SideTable:0 Wall:12 WallPhoto:11 
+Decorations StackBoox Figurine Lamp PhotoFrame Handbag 
 3
-Furniture_color Bed:5 BedPillow:3 BedSheet:12 Wall:7 
-Decorations Book Figurine Flower PhotoFrame 
+Furniture_color Bed:0 BedPillow:2 BedSheet:0 Carpet:8 Chair:11 Floor:1 NightTable:0 SideTable:0 Wall:13 Window:10 
+Decorations Cup Flower GiftBox Map Handbag 
 4
-Furniture_color Cabinet:11 
-Decorations 
+Furniture_color Bed:0 BedPillow:2 BedSheet:12 Cabinet:7 Carpet:11 Floor:0 NightTable:8 SideTable:6 Wall:12 
+Decorations Doll Flower Lamp GirlShoe 
 5
-Furniture_color Bed:12 BedSheet:12 Cabinet:11 Carpet:5 Chair:12 Curtain:4 Desk:12 Floor:8 Wall:1 Window:2 
-Decorations Book Clock Doll Lamp 
+Furniture_color Floor:5 Wall:1 Bed:7 Closet:9 Cabinet:11 NightTable:4 WallPhoto:10 BedSheet:7 BedPillow:7 Window:10 Curtain:5 Desk:12 Chair:4 Carpet:7 SideTable:2 
+Decorations Clock Doll EiffelTower Figurine GirlShoe Handbag Heart Lamp MakeUp Mirror 
 6
-Furniture_color Curtain:10 
-Decorations 
-7
-Furniture_color Desk:12 
-Decorations 
-8
-Furniture_color Bed:5 BedPillow:0 BedSheet:12 Carpet:9 Chair:8 Desk:1 NightTable:5 
-Decorations 
-9
-Furniture_color Bed:1 BedSheet:2 Closet:4 NightTable:12 Wall:12 
-Decorations 
-10
-Furniture_color Cabinet:1 
-Decorations 
-11
-Furniture_color Bed:11 BedPillow:2 BedSheet:7 Carpet:5 Desk:3 Floor:13 NightTable:3 Wall:2 
-Decorations 
-12
-Furniture_color Bed:5 BedPillow:2 BedSheet:7 Cabinet:1 Carpet:2 Chair:4 Curtain:10 Desk:5 Floor:4 Wall:14 Window:2 
-Decorations Doll Doll Doll Flower 
-13
-Furniture_color Closet:14 
-Decorations 
-14
-Furniture_color Desk:5 
-Decorations 
-15
-Furniture_color Bed:5 BedPillow:9 BedSheet:8 Wall:5 
-Decorations 
-16
-Furniture_color Bed:5 BedPillow:2 BedSheet:0 Cabinet:8 Floor:0 NightTable:8 SideTable:2 Wall:13 Window:7 
-Decorations Book Flower Lamp Map PhotoFrame 
-17
 Furniture_color Bed:0 BedPillow:12 BedSheet:2 Carpet:2 Closet:0 Curtain:5 Floor:10 NightTable:3 Wall:12 
 Decorations Book Lamp Plant 
+7
+Furniture_color Bed:5 BedPillow:2 BedSheet:0 Curtain:0 Desk:8 Floor:7 NightTable:9 SideTable:0 Wall:1 WallPhoto:12 Window:2 
+Decorations Clock Doll Figurine Lamp PhotoFrame GirlShoe 
+8
+Furniture_color Floor:8 Wall:0 Bed:5 Closet:6 Cabinet:7 NightTable:5 WallPhoto:12 BedSheet:0 BedPillow:7 Window:1 Curtain:10 Desk:12 Chair:4 Carpet:9 SideTable:1 
+Decorations Clock Doll EiffelTower GiftBox GirlShoe Handbag Heart LoudSpeaker MakeUp Mirror 
+9
+Furniture_color Bed:5 BedPillow:14 BedSheet:7 Chair:4 Closet:8 Desk:5 Floor:4 NightTable:5 SideTable:1 Wall:3 
+Decorations Cup Doll Flower GiftBox Lamp Mirror Plant GirlShoe 
+10
+Furniture_color Floor:5 Wall:14 Bed:5 Closet:14 Cabinet:11 NightTable:2 WallPhoto:4 BedSheet:7 BedPillow:0 Window:10 Curtain:10 Desk:12 Chair:8 Carpet:5 SideTable:0 
+Decorations Doll EiffelTower Flower GirlShoe Handbag Heart Lamp LoudSpeaker MakeUp Mirror Notebook 
+11
+Furniture_color Bed:5 BedPillow:2 BedSheet:14 Cabinet:1 Carpet:2 Chair:2 Desk:4 Floor:6 SideTable:1 Wall:2 
+Decorations Book Doll GiftBox Lamp Mirror Notebook 
+12
+Furniture_color Floor:9 Wall:3 Bed:9 Closet:14 Cabinet:9 NightTable:5 WallPhoto:4 BedSheet:2 BedPillow:12 Window:13 Curtain:7 Desk:14 Chair:0 Carpet:5 SideTable:0 
+Decorations Book Clock EiffelTower GiftBox GirlShoe Handbag Heart MakeUp Mirror StackBoox 
+13
+Furniture_color Bed:9 BedPillow:12 BedSheet:0 Carpet:10 Curtain:7 Desk:8 Floor:2 Wall:10 WallPhoto:9 Window:1 
+Decorations Clock Flower Lamp Map 
+14
+Furniture_color Bed:4 BedPillow:7 BedSheet:7 Chair:11 Curtain:5 NightTable:5 SideTable:4 Wall:1 WallPhoto:12 Window:6 
+Decorations Book Cup Doll Figurine Flower PhotoFrame Plant GirlShoe 
+15
+Furniture_color BedPillow:2 BedSheet:0 Chair:10 NightTable:7 SideTable:4 Wall:12 Window:7 
+Decorations Doll 
+16
+Furniture_color Floor:3 Wall:0 Bed:5 Closet:9 Cabinet:9 NightTable:4 WallPhoto:5 BedSheet:5 BedPillow:10 Window:7 Curtain:10 Desk:8 Chair:5 Carpet:6 SideTable:12 
+Decorations Book Doll EiffelTower GiftBox GirlShoe Handbag Heart MakeUp Mirror Telephone 
+17
+Furniture_color Floor:8 Wall:12 Bed:0 Closet:8 Cabinet:11 NightTable:14 WallPhoto:12 BedSheet:7 BedPillow:7 Window:7 Curtain:7 Desk:12 Chair:2 Carpet:2 SideTable:2 
+Decorations Book Cup Doll EiffelTower GiftBox GirlShoe Handbag Heart MakeUp Map Mirror Telephone 
 18
-Furniture_color Bed:7 BedPillow:12 BedSheet:4 Cabinet:9 Chair:5 Floor:9 Wall:14 
-Decorations Book GiftBox PhotoFrame Plant 
+Furniture_color Bed:9 BedPillow:12 BedSheet:0 Chair:0 Curtain:14 Floor:8 NightTable:5 SideTable:0 Wall:14 WallPhoto:7 Window:13 
+Decorations Cup Doll Flower 
 19
 Furniture_color Bed:2 BedPillow:4 BedSheet:5 Cabinet:1 Carpet:14 Chair:9 Curtain:7 Floor:10 SideTable:2 Wall:1 Window:10 
 Decorations Cup Doll Figurine PhotoFrame Plant 
 20
-Furniture_color Cabinet:1 
-Decorations 
-21
-Furniture_color Bed:5 BedPillow:13 BedSheet:9 Cabinet:11 Carpet:9 Chair:0 Floor:10 SideTable:0 Wall:1 WallPhoto:12 
-Decorations Book Doll Figurine GirlShoe 
-22
 Furniture_color Bed:0 BedPillow:2 BedSheet:12 Cabinet:8 Carpet:2 Chair:10 Desk:5 Floor:9 SideTable:2 Wall:12 Window:2 
 Decorations Book Doll Flower Lamp 
+21
+Furniture_color Bed:5 BedPillow:1 Floor:13 NightTable:5 Wall:10 
+Decorations Doll Flower Lamp 
+22
+Furniture_color Bed:14 BedPillow:2 BedSheet:3 NightTable:8 Wall:14 
+Decorations EiffelTower Flower GiftBox GirlShoe Handbag Heart MakeUp Mirror PhotoFrame 
 23
-Furniture_color Bed:7 BedPillow:12 BedSheet:13 Cabinet:8 Closet:11 Curtain:7 Wall:12 Window:4 
-Decorations Clock LoudSpeaker PhotoFrame 
+Furniture_color Floor:4 Wall:12 Bed:0 Closet:9 Cabinet:1 NightTable:0 WallPhoto:0 BedSheet:12 BedPillow:11 Window:1 Curtain:12 Desk:12 Chair:0 Carpet:2 SideTable:2 
+Decorations Cup Doll EiffelTower Figurine GiftBox GirlShoe Handbag Heart Laptop MakeUp Mirror Notebook 
 24
-Furniture_color Cabinet:1 
-Decorations 
+Furniture_color Floor:13 Wall:5 Bed:5 Closet:14 Cabinet:11 NightTable:0 WallPhoto:12 BedSheet:7 BedPillow:7 Window:1 Curtain:7 Desk:3 Chair:11 Carpet:14 SideTable:11 
+Decorations Book Cup Doll EiffelTower GiftBox GirlShoe Handbag Heart Laptop MakeUp Mirror StackBoox 
 25
-Furniture_color Carpet:9 
-Decorations 
+Furniture_color Floor:7 Wall:1 Bed:5 Closet:9 Cabinet:1 NightTable:0 WallPhoto:11 BedSheet:12 BedPillow:12 Window:8 Curtain:0 Desk:8 Chair:5 Carpet:9 SideTable:0 
+Decorations Doll EiffelTower Flower GiftBox GirlShoe Handbag Heart Laptop MakeUp Map Mirror Plant 
 26
-Furniture_color Bed:0 BedPillow:12 BedSheet:7 Cabinet:10 Carpet:8 Closet:9 Curtain:14 Floor:3 NightTable:5 SideTable:0 Wall:1 WallPhoto:12 Window:7 
-Decorations Doll Flower Lamp Plant Handbag 
+Furniture_color Floor:9 Wall:12 Bed:5 Closet:8 Cabinet:11 NightTable:12 WallPhoto:12 BedSheet:0 BedPillow:2 Window:2 Curtain:0 Desk:5 Chair:0 Carpet:9 SideTable:0 
+Decorations Book Clock Cup Doll EiffelTower Figurine Flower GirlShoe Handbag Heart Lamp MakeUp Mirror PhotoFrame Plant 
 27
-Furniture_color Closet:9 
-Decorations 
+Furniture_color Floor:10 Wall:5 Bed:0 Closet:8 Cabinet:11 NightTable:0 WallPhoto:12 BedSheet:12 BedPillow:1 Window:2 Curtain:12 Desk:1 Chair:11 Carpet:7 SideTable:2 
+Decorations Clock Cup Doll EiffelTower Figurine GiftBox GirlShoe Handbag Heart MakeUp 
 28
-Furniture_color Bed:0 BedPillow:3 BedSheet:0 Curtain:10 Floor:5 SideTable:6 Wall:1 
-Decorations Doll GiftBox Notebook 
+Furniture_color Bed:5 BedPillow:12 BedSheet:12 Chair:4 Floor:12 NightTable:11 Wall:12 WallPhoto:6 
+Decorations Clock Doll Lamp Handbag 
 29
-Furniture_color Bed:5 BedPillow:8 BedSheet:13 Carpet:7 Closet:8 Curtain:14 Floor:3 Wall:1 WallPhoto:14 Window:2 
-Decorations Clock Doll Figurine Lamp PhotoFrame 
+Furniture_color Floor:4 Wall:1 Bed:2 Closet:14 Cabinet:1 NightTable:14 WallPhoto:0 BedSheet:7 BedPillow:10 Window:7 Curtain:7 Desk:8 Chair:6 Carpet:7 SideTable:0 
+Decorations Doll EiffelTower GiftBox GirlShoe Handbag Heart Lamp MakeUp Notebook Telephone TrashBin 
 30
-Furniture_color Closet:14 
-Decorations 
+Furniture_color Floor:3 Wall:14 Bed:7 Closet:9 Cabinet:10 NightTable:0 WallPhoto:5 BedSheet:8 BedPillow:2 Window:2 Curtain:1 Desk:5 Chair:0 Carpet:1 SideTable:0 
+Decorations Cup Doll EiffelTower GirlShoe Handbag Heart LoudSpeaker MakeUp 
 31
-Furniture_color Bed:2 BedPillow:7 BedSheet:7 NightTable:2 Wall:1 WallPhoto:2 
-Decorations Clock Flower Lamp Handbag 
+Furniture_color Bed:7 BedPillow:2 BedSheet:12 Cabinet:8 Chair:6 Closet:9 Curtain:7 NightTable:14 
+Decorations 
 32
-Furniture_color Chair:0 Curtain:14 NightTable:1 
-Decorations 
+Furniture_color Bed:0 BedPillow:12 BedSheet:0 Carpet:9 Curtain:7 Floor:1 NightTable:8 SideTable:2 Wall:12 WallPhoto:0 
+Decorations Lamp 
 33
-Furniture_color Bed:0 
-Decorations 
+Furniture_color Bed:5 BedPillow:12 BedSheet:7 Carpet:5 Chair:0 Closet:9 Curtain:0 Desk:12 Floor:9 Wall:5 WallPhoto:11 Window:10 
+Decorations Book Flower Lamp Laptop TrashBin GirlShoe 
 34
-Furniture_color Bed:6 BedPillow:13 BedSheet:0 Carpet:4 Curtain:8 Floor:4 NightTable:10 Wall:12 
-Decorations Book Figurine Football Basketball 
+Furniture_color Bed:2 BedPillow:7 BedSheet:7 Carpet:1 Closet:8 Floor:5 NightTable:12 Wall:3 Window:7 
+Decorations Clock Flower Lamp 
 35
-Furniture_color Bed:6 BedPillow:2 BedSheet:12 Cabinet:4 Carpet:5 Curtain:3 Floor:10 Wall:8 Window:13 
-Decorations Book Cap Football Lamp 
+Furniture_color Bed:9 BedPillow:7 BedSheet:7 Cabinet:10 Desk:8 Floor:1 NightTable:8 Wall:14 Window:8 
+Decorations GiftBox Lamp PhotoFrame 
 36
-Furniture_color Bed:0 Wall:3 
-Decorations 
+Furniture_color Floor:1 Wall:5 Bed:9 Closet:8 Cabinet:1 NightTable:14 WallPhoto:12 BedSheet:12 BedPillow:12 Window:1 Curtain:1 Desk:12 Chair:4 Carpet:1 SideTable:4 
+Decorations Book Cup Doll EiffelTower Figurine Flower GiftBox GirlShoe Handbag Heart Lamp MakeUp Mirror 
 37
-Furniture_color Bed:6 BedPillow:8 BedSheet:2 Cabinet:13 Carpet:12 Chair:0 Closet:13 Desk:3 Floor:6 NightTable:9 Wall:13 WallPhoto:6 Window:10 
-Decorations Book Cup MechanicalModel Lamp Notebook Map Lamp 
+Furniture_color Bed:0 BedPillow:8 BedSheet:0 Chair:8 Desk:8 Floor:14 SideTable:0 Wall:14 
+Decorations Book Lamp 
 38
-Furniture_color 
-Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
+Furniture_color Floor:14 Wall:1 Bed:5 Closet:14 Cabinet:1 NightTable:2 WallPhoto:11 BedSheet:13 BedPillow:12 Window:7 Curtain:12 Desk:5 Chair:4 Carpet:9 SideTable:2 
+Decorations Doll EiffelTower Figurine GiftBox GirlShoe Handbag Heart MakeUp Mirror Telephone 
 39
-Furniture_color Bed:3 BedPillow:1 BedSheet:12 Wall:9 WallPhoto:11 Window:13 
-Decorations Book Pen Football 
+Furniture_color Floor:10 Wall:12 Bed:10 Closet:7 Cabinet:0 NightTable:6 WallPhoto:12 BedSheet:12 BedPillow:12 Window:10 Curtain:1 Desk:14 Chair:6 Carpet:11 SideTable:2 
+Decorations Clock Doll EiffelTower Flower GiftBox GirlShoe Handbag Heart MakeUp Mirror TrashBin 
 40
-Furniture_color Bed:0 
-Decorations 
+Furniture_color Bed:0 Cabinet:8 Chair:4 Desk:8 Floor:7 Wall:10 
+Decorations Book Book Book Figurine Lamp PhotoFrame PhotoFrame PhotoFrame 
 41
-Furniture_color Bed:10 BedPillow:7 BedSheet:7 Cabinet:13 Carpet:0 Chair:0 Closet:3 Curtain:13 Desk:2 Floor:5 Wall:1 WallPhoto:10 Window:5 
-Decorations Map Lamp Figurine MechanicalModel Clock StackBoox GameHandle 
+Furniture_color Bed:0 BedPillow:12 BedSheet:12 Chair:2 Curtain:12 Desk:8 Floor:5 NightTable:3 SideTable:0 Wall:12 WallPhoto:12 Window:8 
+Decorations Doll Flower Lamp Notebook GirlShoe 
 42
-Furniture_color Bed:0 
-Decorations 
+Furniture_color Bed:9 BedPillow:10 BedSheet:14 Cabinet:10 Chair:0 Closet:9 Floor:1 SideTable:13 Wall:0 
+Decorations Book Doll GiftBox PhotoFrame GirlShoe 
 43
-Furniture_color Bed:6 BedPillow:8 BedSheet:1 Chair:14 Desk:5 Floor:10 NightTable:5 Wall:3 WallPhoto:5 
-Decorations Laptop Earphone PhotoFrame SkaterShoe 
+Furniture_color Bed:10 BedPillow:1 BedSheet:12 Cabinet:1 Carpet:6 Chair:2 Closet:2 Desk:8 Floor:5 NightTable:11 Wall:14 Window:12 
+Decorations Book Lamp Laptop LoudSpeaker 
 44
+Furniture_color Floor:0 Wall:5 Bed:2 Closet:9 Cabinet:1 NightTable:3 WallPhoto:6 BedSheet:0 BedPillow:12 Window:7 Curtain:1 Desk:8 Chair:0 Carpet:9 SideTable:0 
+Decorations Cup Doll EiffelTower GiftBox GirlShoe Handbag Heart Laptop MakeUp Mirror PhotoFrame 
+45
+Furniture_color Bed:8 BedPillow:11 BedSheet:4 Cabinet:9 Chair:5 Closet:12 
+Decorations 
+46
+Furniture_color Floor:2 Wall:14 Bed:5 Closet:12 Cabinet:11 NightTable:0 WallPhoto:11 BedSheet:7 BedPillow:2 Window:2 Curtain:10 Desk:5 Chair:0 Carpet:2 SideTable:13 
+Decorations Book Doll EiffelTower GiftBox GirlShoe Handbag Heart Lamp MakeUp Map 
+47
+Furniture_color Floor:5 Wall:1 Bed:5 Closet:4 Cabinet:11 NightTable:0 WallPhoto:12 BedSheet:7 BedPillow:12 Window:2 Curtain:14 Desk:12 Chair:2 Carpet:2 SideTable:1 
+Decorations Book Doll EiffelTower Flower GiftBox GirlShoe Handbag Heart MakeUp Mirror PhotoFrame 
+48
+Furniture_color Bed:3 BedPillow:12 BedSheet:7 Curtain:0 Floor:13 NightTable:3 Wall:13 
+Decorations Doll Figurine Lamp PhotoFrame Handbag 
+49
+Furniture_color Bed:4 BedPillow:2 BedSheet:11 Cabinet:5 Carpet:4 Chair:2 Closet:5 Desk:14 Floor:11 Wall:3 WallPhoto:5 
+Decorations Lamp MechanicalModel Clock MechanicalModel 
+50
+Furniture_color Floor:5 Wall:10 Bed:0 Closet:4 Cabinet:5 NightTable:0 WallPhoto:13 Dresser:14 BedSheet:0 BedPillow:6 Window:13 Curtain:8 Desk:4 Chair:14 Carpet:13 SideTable:3 
+Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
+51
+Furniture_color Bed:4 BedPillow:13 BedSheet:12 Cabinet:13 Carpet:14 Chair:10 Closet:3 Desk:2 Dresser:0 Floor:10 NightTable:13 SideTable:11 Wall:1 WallPhoto:12 
+Decorations Tennis StackBoox Figurine Notebook Cap Lamp Backpack GameHandle MechanicalModel 
+52
 Furniture_color Bed:10 BedPillow:1 BedSheet:3 Cabinet:13 Carpet:10 Chair:9 Closet:4 Curtain:8 Desk:4 Floor:10 Wall:10 WallPhoto:14 Window:4 
 Decorations Lamp Book LoudSpeaker Earphone 
-45
-Furniture_color 
-Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
-46
-Furniture_color Bed:7 BedPillow:12 BedSheet:0 Cabinet:1 Carpet:14 Chair:10 Closet:3 Curtain:9 Desk:10 Floor:2 NightTable:13 Wall:12 WallPhoto:10 Window:9 
-Decorations Basketball Lamp 
-47
-Furniture_color Cabinet:5 Carpet:10 Chair:7 Desk:3 Wall:4 WallPhoto:10 
-Decorations Football Book Lamp Cup Notebook Backpack TrashBin MechanicalModel Figurine Laptop Earphone Pen 
-48
-Furniture_color Bed:8 BedPillow:2 BedSheet:12 Cabinet:4 Carpet:13 Chair:2 Closet:1 Desk:11 Floor:2 NightTable:6 Wall:0 WallPhoto:12 Window:10 
-Decorations Lamp PhotoFrame Map Figurine Cap 
-49
-Furniture_color Bed:4 BedPillow:13 BedSheet:6 Curtain:11 Desk:9 Dresser:14 Floor:11 Wall:1 WallPhoto:14 Window:13 
-Decorations MechanicalModel Figurine 
-50
-Furniture_color Bed:7 BedPillow:13 BedSheet:11 Cabinet:14 Closet:13 Curtain:4 Floor:11 NightTable:5 SideTable:0 Wall:12 WallPhoto:10 
-Decorations Cap PhotoFrame Figurine 
-51
-Furniture_color Bed:4 BedPillow:13 BedSheet:11 Cabinet:7 Carpet:6 Chair:10 Closet:13 Curtain:9 Desk:4 Dresser:0 Floor:2 SideTable:5 Wall:13 WallPhoto:9 Window:10 
-Decorations Lamp StackBoox Clock MechanicalModel Map GameHandle Book 
-52
-Furniture_color Bed:10 BedPillow:12 BedSheet:8 Carpet:2 Chair:0 Curtain:0 Desk:3 Floor:10 NightTable:0 Wall:13 WallPhoto:11 Window:13 
-Decorations Earphone SkaterShoe Lamp Telephone Laptop Cup 
 53
-Furniture_color 
+Furniture_color Floor:12 Wall:8 Bed:8 Closet:4 Cabinet:4 NightTable:5 WallPhoto:11 Dresser:0 BedSheet:7 BedPillow:10 Window:10 Curtain:3 Desk:3 Chair:10 Carpet:5 SideTable:5 
 Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
 54
-Furniture_color Bed:6 BedPillow:13 BedSheet:11 Carpet:13 Chair:9 Curtain:9 Desk:5 Floor:4 NightTable:2 Wall:10 WallPhoto:12 Window:7 
-Decorations Lamp Lamp StackBoox Telephone 
-55
-Furniture_color Bed:2 BedPillow:12 BedSheet:3 Cabinet:5 Carpet:2 Chair:14 Closet:3 Desk:5 Dresser:14 Floor:8 NightTable:12 SideTable:4 Wall:2 WallPhoto:7 
-Decorations Pen StackBoox Figurine Book Lamp PhotoFrame 
-56
-Furniture_color Bed:3 BedPillow:13 BedSheet:1 Cabinet:2 Chair:0 Desk:10 NightTable:9 Wall:10 WallPhoto:5 
-Decorations Tennis MechanicalModel Football Book Pen Laptop GameHandle Figurine 
-57
-Furniture_color Bed:6 BedPillow:13 BedSheet:0 Carpet:9 Chair:9 Floor:4 NightTable:0 SideTable:0 Wall:3 WallPhoto:13 Window:10 
-Decorations StackBoox 
-58
-Furniture_color Bed:8 BedPillow:2 BedSheet:0 Cabinet:2 Carpet:10 Closet:2 Floor:7 NightTable:12 Wall:12 WallPhoto:12 
-Decorations Lamp LoudSpeaker TissueBox 
-59
-Furniture_color Bed:10 BedPillow:12 BedSheet:0 Cabinet:12 Carpet:6 Chair:12 Closet:4 Desk:4 Dresser:1 Floor:13 NightTable:7 SideTable:14 Wall:1 WallPhoto:12 Window:3 
-Decorations SkaterShoe Clock Vase StackBoox Cap PhotoFrame 
-60
 Furniture_color Bed:8 BedPillow:0 BedSheet:1 Cabinet:4 Chair:1 Curtain:3 Desk:6 Floor:10 NightTable:9 Wall:9 WallPhoto:3 Window:5 
 Decorations LoudSpeaker SkaterShoe Cap Book PhotoFrame Plant LoudSpeaker Lamp Figurine MechanicalModel Football Notebook 
-61
+55
+Furniture_color Bed:10 BedPillow:8 BedSheet:1 Cabinet:13 Chair:14 Closet:4 Curtain:7 Desk:2 Dresser:0 Floor:7 NightTable:13 Wall:8 WallPhoto:9 Window:7 
+Decorations PhotoFrame Map Lamp TissueBox 
+56
+Furniture_color Bed:8 BedPillow:2 BedSheet:0 Cabinet:2 Carpet:10 Closet:2 Floor:7 NightTable:12 Wall:12 WallPhoto:12 
+Decorations Lamp LoudSpeaker TissueBox 
+57
+Furniture_color Bed:7 BedPillow:0 BedSheet:12 Cabinet:14 Chair:0 Closet:4 Desk:7 Floor:1 NightTable:13 Wall:3 WallPhoto:5 
+Decorations TrashBin Map StackBoox Clock MechanicalModel Book Tennis 
+58
 Furniture_color Bed:10 BedPillow:13 BedSheet:13 Chair:7 Curtain:3 Desk:6 Floor:9 NightTable:9 Wall:9 WallPhoto:11 
 Decorations Lamp Clock StackBoox Plant 
+59
+Furniture_color Cabinet:5 Carpet:10 Chair:7 Desk:3 Wall:4 WallPhoto:10 
+Decorations Football Book Lamp Cup Notebook Backpack TrashBin MechanicalModel Figurine Laptop Earphone Pen 
+60
+Furniture_color Bed:13 BedPillow:13 BedSheet:11 Chair:0 Curtain:7 Desk:12 Floor:2 NightTable:4 Wall:13 WallPhoto:9 Window:13 
+Decorations Plant Plant PhotoFrame 
+61
+Furniture_color Floor:6 Wall:8 Bed:10 Closet:6 Cabinet:13 NightTable:10 WallPhoto:3 Dresser:13 BedSheet:11 BedPillow:8 Window:4 Curtain:3 Desk:4 Chair:7 Carpet:9 SideTable:4 
+Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
 62
-Furniture_color Carpet:7 CoffeeTable:5 Curtain:12 Dresser:7 Floor:0 SideTable:10 SingleSofa:5 Sofa:13 SofaPillow:8 Wall:14 
-Decorations Flower PhotoFrame 
+Furniture_color Bed:10 BedPillow:12 BedSheet:12 Cabinet:4 Carpet:8 Chair:10 Closet:2 Curtain:9 Desk:8 Floor:10 NightTable:9 Wall:1 WallPhoto:5 Window:7 
+Decorations Lamp Basketball Book Lamp Notebook Pen 
 63
-Furniture_color Carpet:4 CoffeeTable:7 Floor:13 SideTable:6 SingleSofa:9 Sofa:0 SofaPillow:0 TV:5 TvCabinet:6 Wall:2 WallPhoto:3 Window:11 
-Decorations Flower PhotoFrame Plant GiftBox Lamp PhotoFrame 
+Furniture_color Bed:10 BedPillow:8 BedSheet:7 Cabinet:13 Chair:0 Closet:0 Curtain:13 Desk:0 Dresser:13 Floor:10 NightTable:12 SideTable:5 Wall:3 WallPhoto:5 Window:4 
+Decorations MechanicalModel Lamp MechanicalModel 
 64
-Furniture_color Cabinet:8 Carpet:2 CoffeeTable:7 Dresser:10 Floor:3 SideTable:0 SingleSofa:5 Sofa:0 SofaPillow:0 TV:6 TvCabinet:2 Wall:2 
-Decorations Goblet Vase PhotoFrame Figurine 
+Furniture_color Bed:8 BedPillow:13 BedSheet:1 Cabinet:3 Chair:8 Closet:1 Curtain:8 Desk:7 Floor:4 NightTable:10 Wall:12 WallPhoto:0 Window:13 
+Decorations Football Lamp Figurine Football 
 65
-Furniture_color Cabinet:8 Carpet:2 CoffeeTable:7 Curtain:7 Dresser:8 Floor:6 SideTable:0 SingleSofa:2 Sofa:3 SofaPillow:5 TV:0 TvCabinet:0 Wall:1 WallPhoto:2 Window:4 
-Decorations Flower Goblet Flower DVD Vase Flower Lamp 
+Furniture_color Floor:1 Wall:9 Bed:0 Closet:9 Cabinet:5 NightTable:4 WallPhoto:5 Dresser:8 BedSheet:5 BedPillow:9 Window:13 Curtain:9 Desk:6 Chair:10 Carpet:13 SideTable:3 
+Decorations Backpack Basketball Book Cap Clock Football GameHandle Lamp Laptop Map MechanicalModel Notebook Pad Pen Plant SkaterShoe Tennis TennisRacket TissueBox TrashBin 
 66
+Furniture_color Floor:5 Wall:3 Bed:5 Closet:9 Cabinet:13 NightTable:9 WallPhoto:5 Dresser:0 BedSheet:11 BedPillow:13 Window:10 Curtain:9 Desk:10 Chair:10 Carpet:8 SideTable:5 
+Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
+67
+Furniture_color Floor:13 Wall:3 Bed:0 Closet:13 Cabinet:7 NightTable:10 WallPhoto:7 Dresser:7 BedSheet:11 BedPillow:13 Window:5 Curtain:9 Desk:2 Chair:0 Carpet:8 SideTable:4 
+Decorations Backpack Basketball Book Cap Clock Earphone Figurine Football GameHandle Lamp Laptop Map MechanicalModel Pen SkaterShoe Telephone Tennis TennisRacket TissueBox TrashBin 
+68
+Furniture_color Floor:4 Wall:3 Bed:10 Closet:10 Cabinet:7 NightTable:10 WallPhoto:9 Dresser:14 BedSheet:8 BedPillow:13 Window:4 Curtain:7 Desk:4 Chair:9 Carpet:10 SideTable:5 
+Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
+69
+Furniture_color Bed:10 BedPillow:7 BedSheet:8 Cabinet:13 Chair:2 Closet:13 Curtain:3 Desk:2 Floor:10 NightTable:12 SideTable:10 Wall:3 WallPhoto:14 Window:1 
+Decorations Map MechanicalModel Lamp PhotoFrame Figurine 
+70
+Furniture_color Bed:6 BedPillow:2 BedSheet:12 Cabinet:4 Carpet:5 Curtain:3 Floor:10 Wall:8 Window:13 
+Decorations Book Cap Football Lamp 
+71
+Furniture_color Bed:13 BedPillow:13 BedSheet:13 Cabinet:8 Carpet:6 Chair:9 Closet:9 Curtain:8 Desk:3 Floor:6 NightTable:12 SideTable:12 Wall:1 WallPhoto:6 Window:10 
+Decorations Lamp PhotoFrame Book Football Figurine TrashBin 
+72
+Furniture_color Floor:11 Wall:2 Bed:10 Closet:9 Cabinet:3 NightTable:5 WallPhoto:5 Dresser:1 BedSheet:12 BedPillow:13 Window:2 Curtain:2 Desk:12 Chair:0 Carpet:9 SideTable:12 
+Decorations Backpack Basketball Book Cap Football GameHandle Laptop Map MechanicalModel Notebook Pen PhotoFrame SkaterShoe Tennis TennisRacket TissueBox 
+73
+Furniture_color Floor:6 Wall:8 Bed:0 Closet:2 Cabinet:2 NightTable:8 WallPhoto:9 Dresser:1 BedSheet:8 BedPillow:0 Window:7 Curtain:3 Desk:6 Chair:8 Carpet:5 SideTable:4 
+Decorations Backpack Basketball Book Cap Clock Figurine Football GameHandle Lamp LoudSpeaker Map MechanicalModel Notebook Pad Pen PhotoFrame SkaterShoe StackBoox Tennis TennisRacket TissueBox TrashBin 
+74
+Furniture_color Bed:8 BedPillow:8 BedSheet:11 Cabinet:10 Closet:9 Curtain:7 Floor:3 NightTable:10 SideTable:8 Wall:12 WallPhoto:5 Window:5 
+Decorations Lamp Book MechanicalModel 
+75
+Furniture_color Floor:10 Wall:9 Bed:8 Closet:9 Cabinet:5 NightTable:7 WallPhoto:5 Dresser:1 BedSheet:8 BedPillow:2 Window:10 Curtain:3 Desk:10 Chair:12 Carpet:5 SideTable:0 
+Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
+76
+Furniture_color Bed:10 BedPillow:13 BedSheet:2 Cabinet:14 Chair:10 Curtain:8 Desk:0 Floor:10 NightTable:11 Wall:8 Window:7 
+Decorations Cap Backpack Book Earphone Lamp Laptop Clock Pen 
+77
+Furniture_color Bed:7 BedPillow:12 BedSheet:0 Cabinet:1 Carpet:14 Chair:10 Closet:3 Curtain:9 Desk:10 Floor:2 NightTable:13 Wall:12 WallPhoto:10 Window:9 
+Decorations Basketball Lamp 
+78
+Furniture_color Bed:8 BedPillow:8 BedSheet:3 Cabinet:13 Carpet:9 Chair:7 Closet:13 Curtain:9 Desk:10 Dresser:5 Floor:4 NightTable:12 SideTable:5 Wall:10 WallPhoto:7 Window:7 
+Decorations Map Plant Lamp Clock Plant 
+79
+Furniture_color Bed:10 BedPillow:12 BedSheet:12 Carpet:10 Curtain:2 Floor:5 NightTable:12 Wall:8 Window:10 
+Decorations MechanicalModel PhotoFrame Football 
+80
+Furniture_color Bed:10 BedPillow:0 BedSheet:12 Cabinet:13 Closet:4 Desk:4 Dresser:13 Wall:12 WallPhoto:7 Window:13 
+Decorations Cap MechanicalModel Doll Book Figurine 
+81
+Furniture_color Bed:10 BedPillow:5 BedSheet:11 Carpet:9 Curtain:3 Floor:10 NightTable:13 SideTable:2 Wall:13 WallPhoto:13 Window:10 
+Decorations 
+82
+Furniture_color Floor:10 Wall:3 Bed:0 Closet:4 Cabinet:1 NightTable:9 WallPhoto:3 Dresser:1 BedSheet:1 BedPillow:2 Window:2 Curtain:13 Desk:14 Chair:7 Carpet:6 SideTable:0 
+Decorations Backpack Basketball Cap Clock Football GameHandle Lamp Laptop Map MechanicalModel Notebook Pen SkaterShoe StackBoox Telephone Tennis TennisRacket TissueBox TrashBin 
+83
+Furniture_color Bed:8 BedPillow:14 BedSheet:1 Cabinet:13 Carpet:0 Chair:0 Closet:4 Curtain:13 Desk:9 NightTable:12 Wall:1 WallPhoto:11 Window:11 
+Decorations Plant Laptop Book PhotoFrame 
+84
+Furniture_color Floor:8 Wall:8 Bed:0 Closet:9 Cabinet:8 NightTable:5 WallPhoto:13 Dresser:0 BedSheet:1 BedPillow:12 Window:13 Curtain:7 Desk:10 Chair:0 Carpet:8 SideTable:4 
+Decorations Backpack Basketball Book Cap Clock Football Lamp Laptop Map MechanicalModel Notebook Pen PhotoFrame Plant SkaterShoe Telephone Tennis TennisRacket TissueBox TrashBin Vase 
+85
+Furniture_color Floor:11 Wall:8 Bed:5 Closet:2 Cabinet:13 NightTable:9 WallPhoto:3 Dresser:1 BedSheet:14 BedPillow:8 Window:14 Curtain:13 Desk:7 Chair:0 Carpet:6 SideTable:14 
+Decorations Backpack Basketball Book Cap Figurine Football GameHandle Laptop LoudSpeaker Map MechanicalModel Notebook Pen Plant SkaterShoe Telephone Tennis TennisRacket TissueBox TrashBin Vase 
+86
+Furniture_color Floor:10 Wall:10 Bed:10 Closet:9 Cabinet:4 NightTable:12 WallPhoto:5 Dresser:13 BedSheet:13 BedPillow:2 Window:2 Curtain:9 Desk:7 Chair:0 Carpet:10 SideTable:4 
+Decorations Lamp PhotoFrame Book Clock Figurine Plant Telephone Football GameHandle SkaterShoe Notebook Pen TrashBin 
+87
+Furniture_color Bed:3 BedPillow:7 BedSheet:1 Carpet:6 Chair:10 Curtain:8 Desk:4 Dresser:14 Floor:4 NightTable:13 SideTable:4 Wall:1 Window:13 
+Decorations PhotoFrame Lamp Plant MechanicalModel Figurine Book Lamp 
+88
+Furniture_color Bed:3 BedPillow:1 BedSheet:11 Carpet:5 Chair:10 Curtain:3 Desk:11 Floor:1 NightTable:7 Wall:12 
+Decorations Football StackBoox Notebook 
+89
+Furniture_color Floor:11 Wall:4 Bed:9 Closet:4 Cabinet:1 NightTable:14 WallPhoto:5 Dresser:14 BedSheet:2 BedPillow:9 Window:13 Curtain:8 Desk:11 Chair:2 Carpet:12 SideTable:5 
+Decorations Backpack Basketball Cap Clock Earphone Football GameHandle Lamp Map MechanicalModel Pen PhotoFrame SkaterShoe StackBoox Telephone Tennis TennisRacket TissueBox TrashBin 
+90
+Furniture_color Floor:10 Wall:7 Bed:5 Closet:1 Cabinet:5 NightTable:10 WallPhoto:4 Dresser:1 BedSheet:1 BedPillow:13 Window:7 Curtain:13 Desk:11 Chair:0 Carpet:13 SideTable:5 
+Decorations Backpack Basketball Cap Clock Earphone Football GameHandle Laptop Map MechanicalModel Notebook Pen Plant SkaterShoe Tennis TennisRacket TissueBox TrashBin 
+91
+Furniture_color Bed:8 BedPillow:13 BedSheet:1 Cabinet:6 Carpet:12 Chair:13 Desk:7 Dresser:12 Floor:5 NightTable:2 Wall:9 WallPhoto:12 
+Decorations Book Lamp Book Lamp PhotoFrame MechanicalModel Plant PhotoFrame 
+92
+Furniture_color Carpet:2 CoffeeTable:11 Floor:6 SideTable:2 SingleSofa:4 Sofa:11 SofaPillow:6 Wall:1 WallPhoto:6 
+Decorations Vase Lamp Flower Candle StackBoox CrystalBall StackBoox 
+93
+Furniture_color Carpet:13 Floor:4 SideTable:12 SingleSofa:1 Sofa:3 SofaPillow:0 Wall:1 
+Decorations Flower Candle 
+94
+Furniture_color CoffeeTable:2 Sofa:4 SofaPillow:13 Wall:3 
+Decorations Flower Candle 
+95
+Furniture_color Carpet:2 CoffeeTable:7 Dresser:7 Floor:9 SideTable:6 SingleSofa:9 Sofa:4 SofaPillow:13 Wall:1 
+Decorations Flower Candle StackBoox Flower PhotoFrame 
+96
+Furniture_color CoffeeTable:14 Floor:6 SingleSofa:1 Sofa:3 SofaPillow:3 Wall:2 WallPhoto:5 
+Decorations Lamp StackBoox Goblet 
+97
+Furniture_color CoffeeTable:7 Curtain:8 Floor:8 SingleSofa:4 Sofa:8 SofaPillow:11 Wall:9 Window:10 
+Decorations 
+98
+Furniture_color Cabinet:7 Carpet:2 CoffeeTable:2 Curtain:0 Dresser:8 Floor:4 SideTable:2 SingleSofa:4 Sofa:4 SofaPillow:5 TV:4 TvCabinet:5 Wall:1 Window:10 
+Decorations Goblet Candle Plant Flower Flower PhotoFrame 
+99
 Furniture_color Carpet:1 CoffeeTable:5 Floor:3 SingleSofa:10 Sofa:10 SofaPillow:11 Wall:9 
 Decorations Flower StackBoox Candle 
-67
-Furniture_color Cabinet:10 Carpet:1 CoffeeTable:10 Curtain:10 Dresser:7 Floor:2 SideTable:0 SingleSofa:14 Sofa:8 SofaPillow:5 Wall:14 WallPhoto:6 Window:13 
-Decorations Flower StackBoox Lamp StackBoox 
-68
+100
+Furniture_color Cabinet:1 Carpet:1 CoffeeTable:7 Curtain:10 Dresser:8 Floor:3 SideTable:0 SingleSofa:4 Sofa:6 SofaPillow:13 Wall:1 WallPhoto:10 Window:13 
+Decorations Goblet Goblet Flower Lamp CrystalBall StackBoox Telephone 
+101
+Furniture_color Cabinet:11 CoffeeTable:7 Dresser:7 Floor:2 SideTable:0 SingleSofa:4 Sofa:8 SofaPillow:11 TvCabinet:12 Wall:1 
+Decorations Flower Goblet Flower Candle Plant 
+102
+Furniture_color Cabinet:9 Carpet:4 CoffeeTable:3 SingleSofa:5 Sofa:1 SofaPillow:4 Wall:14 WallPhoto:2 
+Decorations Flower StackBoox Figurine 
+103
+Furniture_color CoffeeTable:2 Curtain:10 Dresser:7 SingleSofa:14 Sofa:8 SofaPillow:5 Wall:1 
+Decorations Goblet StackBoox Flower Candle Figurine Lamp 
+104
+Furniture_color Cabinet:10 Carpet:5 CoffeeTable:7 Curtain:7 Floor:7 SideTable:0 SingleSofa:3 Sofa:7 SofaPillow:0 TV:6 TvCabinet:4 Wall:14 
+Decorations Flower Candle Vase 
+105
+Furniture_color Cabinet:1 Dresser:4 Floor:10 Wall:3 
+Decorations Flower Candle Book Figurine 
+106
+Furniture_color Carpet:6 CoffeeTable:7 Curtain:7 Floor:9 SingleSofa:1 Sofa:10 SofaPillow:13 Wall:14 WallPhoto:7 Window:13 
+Decorations Cup 
+107
+Furniture_color Cabinet:1 Carpet:14 CoffeeTable:2 Curtain:0 Dresser:10 Floor:8 SingleSofa:4 Sofa:8 SofaPillow:13 Wall:3 
+Decorations Candle Flower Flower Flower 
+108
+Furniture_color Cabinet:11 Carpet:7 Dresser:7 Floor:4 SingleSofa:1 Sofa:9 SofaPillow:13 Wall:14 WallPhoto:7 
+Decorations Flower Perfume StackBoox Lamp Plant Vase PhotoFrame 
+109
 Furniture_color Cabinet:7 Floor:4 TV:0 TvCabinet:0 Wall:9 
 Decorations Flower PhotoFrame GiftBox 
-69
-Furniture_color Carpet:14 CoffeeTable:3 Curtain:8 Floor:5 SingleSofa:12 Sofa:8 SofaPillow:13 Wall:1 
-Decorations Flower Flower StackBoox Lamp Figurine 
-70
-Furniture_color CoffeeTable:4 Floor:2 SingleSofa:8 Sofa:0 Wall:9 
-Decorations Flower 
-71
-Furniture_color Carpet:2 CoffeeTable:3 Curtain:7 Dresser:11 Floor:1 SideTable:5 SingleSofa:13 Sofa:13 SofaPillow:13 Wall:12 WallPhoto:0 Window:10 
-Decorations Flower Lamp Candle 
-72
-Furniture_color Cabinet:7 CoffeeTable:2 Curtain:8 Floor:8 SideTable:0 SingleSofa:10 Sofa:9 SofaPillow:5 Wall:1 Window:7 
-Decorations Flower Goblet Flower 
-73
-Furniture_color Cabinet:11 Carpet:11 CoffeeTable:7 Curtain:10 Floor:13 SideTable:0 Sofa:13 SofaPillow:8 Wall:11 WallPhoto:6 Window:2 
-Decorations Flower Candle 
-74
-Furniture_color Carpet:13 CoffeeTable:7 SideTable:0 SingleSofa:9 Sofa:3 SofaPillow:5 Wall:13 WallPhoto:11 
-Decorations Goblet Candle PhotoFrame Lamp 
-75
-Furniture_color Cabinet:3 Carpet:13 CoffeeTable:11 Floor:4 SideTable:2 SingleSofa:4 Sofa:8 SofaPillow:11 TV:5 TvCabinet:13 Wall:3 WallPhoto:5 
-Decorations TeaSet RemoteControl 
-76
-Furniture_color Cabinet:1 Carpet:1 CoffeeTable:11 Floor:4 SingleSofa:4 Sofa:3 SofaPillow:12 TV:11 TvCabinet:12 Wall:12 WallPhoto:5 
-Decorations Earphone MP3 TeaSet Book 
-77
+110
+Furniture_color Carpet:8 CoffeeTable:5 Dresser:2 Floor:13 SideTable:8 SingleSofa:1 Sofa:12 SofaPillow:4 Wall:14 WallPhoto:12 
+Decorations Flower StackBoox Vase PhotoFrame Figurine 
+111
+Furniture_color Cabinet:4 Carpet:12 CoffeeTable:2 Curtain:7 Dresser:3 Floor:4 SideTable:3 SingleSofa:10 Sofa:14 TV:9 TvCabinet:14 Wall:12 WallPhoto:5 
+Decorations DVD LoudSpeaker Figurine StackBoox Goblet MP3 
+112
+Furniture_color Cabinet:4 Carpet:2 CoffeeTable:13 Curtain:3 Floor:3 SingleSofa:9 Sofa:13 SofaPillow:11 TV:8 TvCabinet:2 Wall:2 Window:8 
+Decorations Pad Flower DVD LoudSpeaker Figurine 
+113
+Furniture_color Cabinet:7 CoffeeTable:7 Floor:10 SingleSofa:1 Sofa:3 TV:14 TvCabinet:7 Wall:13 Window:10 
+Decorations DVD LoudSpeaker Figurine StackBoox 
+114
+Furniture_color Cabinet:3 Wall:13 
+Decorations Earphone DVD LoudSpeaker Plant GameHandle Telephone 
+115
+Furniture_color Cabinet:3 Carpet:5 CoffeeTable:12 Floor:7 SideTable:14 SingleSofa:6 Sofa:14 TV:4 TvCabinet:2 Wall:13 WallPhoto:9 
+Decorations DVD Laptop Earphone Figurine Book RemoteControl 
+116
+Furniture_color Cabinet:11 Carpet:13 CoffeeTable:7 Dresser:6 Floor:7 SideTable:12 SingleSofa:10 Sofa:10 SofaPillow:11 TV:13 TvCabinet:12 Wall:10 WallPhoto:4 
+Decorations Figurine DVD Lamp DigitalScale MP3 Pad 
+117
+Furniture_color Cabinet:13 Carpet:9 CoffeeTable:3 Dresser:13 Floor:10 SideTable:5 TV:8 TvCabinet:10 Wall:1 WallPhoto:6 
+Decorations Pad LoudSpeaker PhotoFrame RemoteControl 
+118
+Furniture_color Cabinet:10 Carpet:12 CoffeeTable:2 Curtain:0 Dresser:11 Floor:7 SideTable:14 Sofa:13 SofaPillow:12 TV:8 TvCabinet:0 Wall:12 Window:13 
+Decorations DVD StackBoox Figurine DigitalScale Cup 
+119
 Furniture_color Cabinet:13 Carpet:8 CoffeeTable:7 Curtain:8 Floor:2 SingleSofa:9 Sofa:4 SofaPillow:9 TV:4 TvCabinet:8 Wall:2 WallPhoto:6 
 Decorations DVD DigitalScale RemoteControl StackBoox 
-78
-Furniture_color Cabinet:11 Carpet:12 Dresser:4 Floor:10 SideTable:2 Sofa:11 TV:12 TvCabinet:4 Wall:1 
-Decorations RemoteControl LoudSpeaker Book StackBoox MP3 
-79
-Furniture_color Cabinet:4 Carpet:2 CoffeeTable:11 Curtain:9 Dresser:12 Floor:9 SideTable:3 SingleSofa:7 Sofa:8 SofaPillow:13 TV:10 TvCabinet:8 Wall:10 WallPhoto:12 Window:5 
-Decorations StackBoox Figurine Telephone MP3 
-80
-Furniture_color Cabinet:10 Carpet:14 CoffeeTable:0 Dresser:3 Floor:4 SingleSofa:1 Sofa:10 TV:9 TvCabinet:7 Wall:13 WallPhoto:7 Window:5 
-Decorations PhotoFrame Pad RemoteControl Cup 
-81
+120
+Furniture_color Cabinet:1 Carpet:0 CoffeeTable:12 Curtain:0 Floor:9 SingleSofa:10 Sofa:10 SofaPillow:13 TV:6 TvCabinet:5 Wall:1 WallPhoto:13 
+Decorations RemoteControl DVD LoudSpeaker Clock Book Earphone 
+121
+Furniture_color Cabinet:1 Carpet:9 Dresser:7 Floor:8 SideTable:0 SingleSofa:12 Sofa:3 SofaPillow:10 TV:12 TvCabinet:14 Wall:1 WallPhoto:6 
+Decorations RemoteControl DVD Earphone 
+122
 Furniture_color Cabinet:1 CoffeeTable:7 Dresser:2 Floor:12 SingleSofa:11 Sofa:14 SofaPillow:12 TV:13 TvCabinet:12 Wall:12 
 Decorations Telephone RemoteControl DVD 
-82
-Furniture_color Cabinet:11 Carpet:9 CoffeeTable:7 Curtain:0 Dresser:8 Floor:8 SideTable:0 SingleSofa:12 Sofa:10 SofaPillow:10 TV:2 TvCabinet:13 Wall:1 WallPhoto:5 
-Decorations DigitalScale PhotoFrame Plant Book Pad PhotoFrame Figurine 

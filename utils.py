@@ -57,62 +57,76 @@ def init_globals(args):
     GLV.lrD = args.lrD
     GLV.beta1 = args.beta1
     GLV.beta2 = args.beta2
+    GLV.train_set = args.train_set
+    GLV.train_type = args.train_type
+    GLV.test_set = args.test_set
+    GLV.test_type = args.test_type
+    GLV.filter_types = args.filter_types
+    GLV.gumbel_softmax = args.gumbel_softmax
+    GLV.softmax_argmax = args.softmax_argmax
+    GLV.softmax_sample = args.softmax_sample
 
 
 def load_dist_gt():
-    furniture_dist = {}
     furniture_types = GLV.furniture_types
+    smallobj_types = GLV.smallobj_types
     cluster_num = GLV.cluster_num
     adjs = GLV.adjs
-    for i in range(len(furniture_types)):
-        furniture_dist[furniture_types[i]] = np.zeros((cluster_num, len(adjs)))
-
-    smallobj_types = GLV.smallobj_types
-    dec_dist = {}
-    for i in range(len(smallobj_types)):
-        dec_dist[smallobj_types[i]] = np.zeros(len(adjs))
-
-    with open(GLV.dist_file) as fp:
-        lines = fp.readlines()
-
-    fur_mode = True
-    dec_mode = False
-    f = ''
-    d = ''
-    for i in range(len(lines)):
-        line = lines[i].strip()
-        if line.startswith('Furniture type') and fur_mode:
-            f = line.split(':')[1]
-        elif line.startswith('Decoration type'):
-            fur_mode = False
-            dec_mode = True
-            d = line.split(':')[1]
-        elif fur_mode:
-            c_i = int(line.split(':')[0])
-            probs = (line.split(':')[1].split(' '))[0: len(adjs)]
-            for pi in range(len(probs)):
-                if f in GLV.furniture_types:
-                    furniture_dist[f][c_i, pi] = float(probs[pi])
-        elif dec_mode:
-            probs = (line.split(' '))[0: len(adjs)]
-            for pi in range(len(probs)):
-                if d in GLV.smallobj_types:
-                    dec_dist[d][pi] = float(probs[pi])
-        else:
-            print('I am very curious of when will reach here..')
-
-    # normalization of furniture_distribution
+    furniture_dist = {}
     GLV.fur_dist_gt = {}
-    for k, v in furniture_dist.items():
-        GLV.fur_dist_gt[k] = np.zeros(v.shape)
-        for i in range(len(adjs)):
-            probs = v[:, i]
-            GLV.fur_dist_gt[k][:, i] = linear_norm(furniture_dist[k][:, i])
-
-    # normalization of decoration_dist
+    dec_dist = {}
     GLV.dec_dist_gt = {}
-    for k, v in dec_dist.items():
-        GLV.dec_dist_gt[k] = linear_norm(v)
+    for t in GLV.train_test:
+        furniture_dist[t] = {}
+        GLV.fur_dist_gt[t] = {}
+        dec_dist[t] = {}
+        GLV.dec_dist_gt[t] = {}
+        for i in range(len(furniture_types)):
+            furniture_dist[t][furniture_types[i]] = np.zeros((cluster_num, len(adjs)))
+        for i in range(len(smallobj_types)):
+            dec_dist[t][smallobj_types[i]] = np.zeros(len(adjs))
+
+        dist_file = GLV.dataset_path + '/portions-%s.txt' % t
+        with open(dist_file) as fp:
+            lines = fp.readlines()
+
+        fur_mode = True
+        dec_mode = False
+        f = ''
+        d = ''
+        for i in range(len(lines)):
+            line = lines[i].strip()
+            if line.startswith('Furniture type') and fur_mode:
+                f = line.split(':')[1]
+            elif line.startswith('Decoration type'):
+                fur_mode = False
+                dec_mode = True
+                d = line.split(':')[1]
+            elif fur_mode:
+                c_i = int(line.split(':')[0])
+                probs = (line.split(':')[1].split(' '))[0: len(adjs)]
+                for pi in range(len(probs)):
+                    if f in GLV.furniture_types:
+                        furniture_dist[t][f][c_i, pi] = float(probs[pi])
+            elif dec_mode:
+                probs = (line.split(' '))[0: len(adjs)]
+                for pi in range(len(probs)):
+                    if d in GLV.smallobj_types:
+                        dec_dist[t][d][pi] = float(probs[pi])
+            else:
+                print('I am very curious of when will reach here..')
+
+        # normalization of furniture_distribution
+
+        for k, v in furniture_dist[t].items():
+            GLV.fur_dist_gt[t][k] = np.zeros(v.shape)
+            for i in range(len(adjs)):
+                probs = v[:, i]
+                GLV.fur_dist_gt[t][k][:, i] = linear_norm(furniture_dist[t][k][:, i])
+
+        # normalization of decoration_dist
+        for k, v in dec_dist[t].items():
+            GLV.dec_dist_gt[t][k] = linear_norm(v)
 
 
 def linear_norm(x):
@@ -136,17 +150,30 @@ def load_dataset(args):
         init_mnistdataloader(train=True, class_num=GLV.class_num, imgSize=GLV.img_size, batch_size=GLV.batch_size)
 
     elif args.dataset == 'scene':
-        feature_path = GLV.dataset_path + '/features.txt'
-        label_path = GLV.dataset_path + '/labels.txt'
-        GLV.data_loader = DataLoader(SceneFurColorSmallObjDataset(feature_path, label_path, noise=GLV.dataset_noise),
+        GLV.data_loader = {}
+        GLV.furniture_type_indices={}
+        for t in GLV.train_test:
+            GLV.data_loader[t] = {}
+            GLV.furniture_type_indices[t] = {}
+            for og in GLV.org_gen:
+                feature_path = GLV.dataset_path + ('/features-%s-%s.txt') % (og, t)
+                label_path = GLV.dataset_path + ('/labels-%s-%s.txt') % (og, t)
+                GLV.data_loader[t][og] = DataLoader(SceneFurColorSmallObjDataset(feature_path, label_path, noise=GLV.dataset_noise),
                                          batch_size=GLV.batch_size,
                                          shuffle=True)
-        data = GLV.data_loader.__iter__().__next__()[0]
+
+
+
+        #feature_path = GLV.dataset_path + '/features.txt'
+        #label_path = GLV.dataset_path + '/labels.txt'
+        #GLV.data_loader = DataLoader(SceneFurColorSmallObjDataset(feature_path, label_path, noise=GLV.dataset_noise),
+        #                                 batch_size=GLV.batch_size,
+        #                                 shuffle=True)
+        data = GLV.data_loader['train']['gen'].__iter__().__next__()[0]
         GLV.input_dim = data.shape[1]  # feature dimension
         GLV.H = 20
         GLV.W = 24
-        init_scenedataloader(feature_path=feature_path, label_path=label_path,
-                             class_num=GLV.class_num, input_dim=GLV.input_dim, batch_size=GLV.batch_size)
+        init_scenedataloader(class_num=GLV.class_num, input_dim=GLV.input_dim)
 
     else:
         raise Exception("[!] There is no dataset of " + GLV.dataset)
@@ -387,6 +414,38 @@ def D_Prob_G_plot(hist):
 
     plt.close()
 
+
+def plot_probdim_predict_cat(hist):
+    path = os.path.join(GLV.save_dir, GLV.dataset, GLV.model_name)
+    if GLV.batch_mode:
+        path = path + '/' + GLV.config
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    model_name = GLV.model_name
+    x = range(len(hist['mse_prob_dim']))
+
+    y1 = hist['mse_prob_dim']
+    y2 = hist['predict_category']
+
+    plt.plot(x, y1, label='Prob by dims')
+    plt.plot(x, y2, label='Predic by cats')
+
+    plt.xlabel('Iter')
+    plt.ylabel('Score')
+
+    plt.legend(loc=4)
+    plt.grid(True)
+    plt.tight_layout()
+
+    path = os.path.join(path, model_name + '_Prob_Predict.png')
+
+    plt.savefig(path)
+
+    plt.close()
+
+
 def metric_plot(scores):
     # dim 0： epochs, dim 1: class, dim 2: metric, emd, mmd, 1-nn.acc, 1-nn.acc_real, 1-nn.acc_fake
     path = os.path.join(GLV.save_dir, GLV.dataset, GLV.model_name)
@@ -520,13 +579,42 @@ def filter_types(x, label):
     fc = fc.reshape(len(data), -1, GLV.cluster_num)
     for i in range(len(x)):
         if GLV.gpu_mode:
-            l = np.where(label[i].cpu().data.numpy() == 1)[0]
+            #l = np.where(label[i].cpu().data.numpy() == 1)[0]
+            l = label[i]
         else:
-            l = np.where(label[i].data.numpy() == 1)[0]
+            #l = np.where(label[i].data.numpy() == 1)[0]
+            l = label[i]
         if l == 0 or l == 1:
             fc[i, GLV.living_only_idx, :] = 0
         else:
             fc[i, GLV.bedroom_only_idx, :] = 0
+    fc = fc.reshape(len(data), -1)
+    # sm = np.float32(sm > 0.5)
+    converted_data[:, :fl_furcolor] = fc
+    converted_data[:, fl_furcolor: feature_size] = sm
+    data = torch.FloatTensor(converted_data)
+
+    return data
+
+def filter_non_exist(x, fur_indices):
+    # l = np.where(label.data.numpy() == 1)
+    if GLV.gpu_mode:
+        data = x.cpu().data
+        fur_indices = fur_indices.cpu().data
+    else:
+        data = x.data
+        fur_indices = fur_indices.data
+
+    converted_data = np.zeros((len(data), len(data[0])))
+    data = data.numpy()
+    fur_indices = fur_indices.numpy()
+
+    fc, sm = data[:, :fl_furcolor], data[:, fl_furcolor:feature_size]
+    fc = fc.reshape(len(data), -1, GLV.cluster_num)
+    print (len(x))
+    for i in range(len(x)):
+        y_index = np.where(fur_indices[i] == 0)
+        fc[i, y_index, :] = 0
     fc = fc.reshape(len(data), -1)
     # sm = np.float32(sm > 0.5)
     converted_data[:, :fl_furcolor] = fc
@@ -616,6 +704,7 @@ class SceneFurColorSmallObjDataset(Dataset):
         self.features = []
         self.labels = []
         self.indices = []
+        self.furniture_indices = []
         furniture_types = GLV.furniture_types
         smallobj_types = GLV.smallobj_types
         cluster_num = GLV.cluster_num
@@ -628,6 +717,7 @@ class SceneFurColorSmallObjDataset(Dataset):
                     f_cmpl_flag = False
                     index = int(line)
                     feature = [0 for x in range(GLV.feature_size)] # 420要比fl_furcolor + fl_smallobj大，才可以显示
+                    f_index = [0 for x in range(len(GLV.furniture_types))]
                     #feature = [0 for x in range(fl_furcolor + fl_smallobj)]
                 elif line.startswith('Furniture_color'):
                     fur_color = line.split()[1:]
@@ -641,6 +731,7 @@ class SceneFurColorSmallObjDataset(Dataset):
                     for fur in furniture_types:
                         if fur in cur_fur_types:
                             i = cur_fur_types.index(fur)
+                            f_index[furniture_types.index(fur)] = 1
                             ci = cur_fur_ci[i]
                     #for i in range(len(fur_color)):
                         #fur = cur_fur_types[i]   # color_cluster.split(':')[0]
@@ -699,6 +790,7 @@ class SceneFurColorSmallObjDataset(Dataset):
                     f_cmpl_flag = True
                 if f_cmpl_flag:
                     self.features.append(feature)
+                    self.furniture_indices.append(f_index)
                     self.indices.append(index)
 
         with open(label_dir) as f:
@@ -708,13 +800,14 @@ class SceneFurColorSmallObjDataset(Dataset):
                     label = int(line.split()[1])
                     self.labels.append(label)
         self.features = np.array(self.features)
+        self.furniture_indices = np.array(self.furniture_indices)
 
 
     def __len__(self):
         return len(self.labels)
 
     def __getitem__(self, idx):
-        return self.features[idx], self.labels[idx]
+        return self.features[idx], self.labels[idx], self.furniture_indices[idx]
 
 
 
